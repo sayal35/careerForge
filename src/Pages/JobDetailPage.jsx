@@ -8,7 +8,7 @@ const jobs = [
     salary: "$80,000 - $120,000",
     content:
       "Software engineers design, develop, test, and maintain software applications and systems. They write clean and efficient code and collaborate with cross-functional teams.",
-    image: "https://via.placeholder.com/300x200?text=Software+Engineer",
+    image: "/Softwareer.jpg",
     positions: 5,
     benefits: [
       "Flexible working hours",
@@ -25,7 +25,7 @@ const jobs = [
     salary: "$60,000 - $90,000",
     content:
       "UI/UX designers focus on the look and feel of applications, ensuring an intuitive and engaging user experience. They create wireframes, prototypes, and design systems.",
-    image: "https://via.placeholder.com/300x200?text=UI%2FUX+Designer",
+    image: "/Softwareer.jpg",
     positions: 2,
     benefits: [
       "Creative work culture",
@@ -42,7 +42,58 @@ const jobs = [
     salary: "$55,000 - $85,000",
     content:
       "Data analysts collect, process, and perform statistical analyses on data. They help organizations make informed decisions by interpreting data trends and generating reports.",
-    image: "https://via.placeholder.com/300x200?text=Data+Analyst",
+    image: "/Softwareer.jpg",
+    positions: 3,
+    benefits: [
+      "Professional development",
+      "Work-from-home allowance",
+      "Team outings",
+      "Performance bonuses",
+    ],
+    applicationLink:
+      "mailto:careers@example.com?subject=Application for Data Analyst",
+  },
+  {
+    id: "software-er",
+    title: "Software Engineer job",
+    salary: "$55,000 - $85,000",
+    content:
+      "Data analysts collect, process, and perform statistical analyses on data. They help organizations make informed decisions by interpreting data trends and generating reports.",
+    image: "/Softwareer.jpg",
+    positions: 3,
+    benefits: [
+      "Professional development",
+      "Work-from-home allowance",
+      "Team outings",
+      "Performance bonuses",
+    ],
+    applicationLink:
+      "mailto:careers@example.com?subject=Application for Data Analyst",
+  },
+  {
+    id: "oil-petroleum",
+    title: "Oil and Petroleum Job",
+    salary: "$55,000 - $85,000",
+    content:
+      "Data analysts collect, process, and perform statistical analyses on data. They help organizations make informed decisions by interpreting data trends and generating reports.",
+    image: "/oil.jpg",
+    positions: 3,
+    benefits: [
+      "Professional development",
+      "Work-from-home allowance",
+      "Team outings",
+      "Performance bonuses",
+    ],
+    applicationLink:
+      "mailto:careers@example.com?subject=Application for Data Analyst",
+  },
+  {
+    id: "bank-job",
+    title: "Banking Job",
+    salary: "$55,000 - $85,000",
+    content:
+      "Data analysts collect, process, and perform statistical analyses on data. They help organizations make informed decisions by interpreting data trends and generating reports.",
+    image: "/bank.jpg",
     positions: 3,
     benefits: [
       "Professional development",
@@ -78,7 +129,7 @@ const JobDetailPage = () => {
           <p className="text-xl font-semibold text-gray-700">
             Salary Range: {job.salary}
           </p>
-          <p className="text-gray-700">{job.content}</p>
+          <p className="text-gray-700">{job.content.repeat(4)}</p>
         </div>
 
         {/* Right Image */}
