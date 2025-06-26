@@ -3,6 +3,7 @@ import Dashboard from "../Dashboard/Dashboard.jsx";
 import Contact from "../Dashboard/Contact.jsx";
 import JobDetailPage from "../Pages/JobDetailPage.jsx";
 import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.jsx";
 
 function Pathway() {
   return (
@@ -13,6 +14,7 @@ function Pathway() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/jobs/:jobId" element={<JobDetailPage />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -27,7 +28,9 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         {/* Left - Brand */}
-        <div className="text-xl font-bold text-blue-600">careerforge</div>
+        <Link to="/" className="text-xl font-bold text-blue-600">
+          careerforge
+        </Link>
 
         {/* Right - Navigation for large screens */}
         <div className="hidden md:flex space-x-6 text-gray-700 font-medium">
