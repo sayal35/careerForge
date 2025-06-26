@@ -14,8 +14,8 @@ import {
 import { useFormValidation } from "../hooks/useFormValidation";
 import { validationRules } from "../utils/validationRules";
 import { jobRoles } from "../assets/jobsData";
-import FormField from "../components/forms/FormField";
-import FileUpload from "../components/forms/FileUpload";
+import FormField from "../components/Forms/FormField";
+import FileUpload from "../components/Forms/FileUpload";
 
 const LoadingSpinner = ({ size = "default", className = "" }) => {
   const sizeClasses = {
