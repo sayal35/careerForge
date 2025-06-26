@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const scrollTimeout = useRef(null);
+  const location = useLocation();
 
   const handleScroll = () => {
     clearTimeout(scrollTimeout.current);
@@ -17,6 +18,18 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close menu on route change
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location]);
+
+  const navLinks = [
+    { name: "Blog", to: "/blog" },
+    { name: "Explore Your Future", to: "/explore" },
+    { name: "Apply Now", to: "/apply" },
+    { name: "Available Jobs", to: "/jobs" },
+  ];
 
   return (
     <div
@@ -34,23 +47,19 @@ const Navbar = () => {
 
         {/* Right - Navigation for large screens */}
         <div className="hidden md:flex space-x-6 text-gray-700 font-medium">
-          <a href="#blog" className="hover:underline">
-            Blog
-          </a>
-          <a href="#explore" className="hover:underline">
-            Explore Your Future
-          </a>
-          <a href="#apply" className="hover:underline">
-            Apply Now
-          </a>
-          <a href="#jobs" className="hover:underline">
-            Available Jobs
-          </a>
+          {navLinks.map((link) => (
+            <Link key={link.name} to={link.to} className="hover:underline">
+              {link.name}
+            </Link>
+          ))}
         </div>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <button onClick={() => setMenuOpen(!menuOpen)}>
+          <button
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label="Toggle Menu"
+          >
             {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
           </button>
         </div>
@@ -59,18 +68,11 @@ const Navbar = () => {
       {/* Mobile Dropdown Menu */}
       {menuOpen && (
         <div className="md:hidden bg-white px-4 pb-4 space-y-2 font-medium text-gray-700">
-          <a href="#blog" className="block">
-            Blog
-          </a>
-          <a href="#explore" className="block">
-            Explore Your Future
-          </a>
-          <a href="#apply" className="block">
-            Apply Now
-          </a>
-          <a href="#jobs" className="block">
-            Available Jobs
-          </a>
+          {navLinks.map((link) => (
+            <Link key={link.name} to={link.to} className="block">
+              {link.name}
+            </Link>
+          ))}
         </div>
       )}
     </div>
