@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import DashboardInfo from "./DashboardInfo";
+
+import JobListWithDetails from "./JobListWithDetails";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -10,7 +12,8 @@ const Dashboard = () => {
 
   return (
     <>
-      <Navbar />
+      <DashboardInfo />
+      <JobListWithDetails />
       <div className="p-4 min-h-[200vh] bg-gray-50">
         {/* You can also use "min-h-screen" if you want at least full height */}
         <h1 className="text-2xl font-bold">Dashboard</h1>
