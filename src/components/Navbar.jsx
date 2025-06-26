@@ -8,6 +8,7 @@ const Navbar = () => {
   const scrollTimeout = useRef(null);
   const location = useLocation();
 
+  // Detect scrolling for shadow effect
   const handleScroll = () => {
     clearTimeout(scrollTimeout.current);
     setIsScrolling(true);
@@ -19,9 +20,10 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu on route change
+  // Close menu and scroll to top on route change
   useEffect(() => {
     setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [location]);
 
   const navLinks = [
@@ -45,7 +47,7 @@ const Navbar = () => {
           careerforge
         </Link>
 
-        {/* Right - Navigation for large screens */}
+        {/* Desktop Nav */}
         <div className="hidden md:flex space-x-6 text-gray-700 font-medium">
           {navLinks.map((link) => (
             <Link key={link.name} to={link.to} className="hover:underline">
@@ -69,7 +71,12 @@ const Navbar = () => {
       {menuOpen && (
         <div className="md:hidden bg-white px-4 pb-4 space-y-2 font-medium text-gray-700">
           {navLinks.map((link) => (
-            <Link key={link.name} to={link.to} className="block">
+            <Link
+              key={link.name}
+              to={link.to}
+              className="block"
+              onClick={() => setMenuOpen(false)} // extra close safety
+            >
               {link.name}
             </Link>
           ))}

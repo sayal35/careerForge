@@ -1,59 +1,24 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
-const jobs = [
-  {
-    id: "software-engineer",
-    title: "Software Engineer",
-    salary: "$80,000 - $120,000",
-    content: `Software engineers design, develop, test, and maintain software applications and systems. They write clean and efficient code and collaborate with cross-functional teams.`,
-    image: "/Softwareer.jpg",
-  },
-  {
-    id: "ui-ux-designer",
-    title: "UI/UX Designer",
-    salary: "$60,000 - $90,000",
-    content: `UI/UX designers focus on the look and feel of applications, ensuring an intuitive and engaging user experience. They create wireframes, prototypes, and design systems.`,
-    image: "/Softwareer.jpg",
-  },
-  {
-    id: "data-analyst",
-    title: "Data Analyst",
-    salary: "$55,000 - $85,000",
-    content: `Data analysts collect, process, and perform statistical analyses on data. They help organizations make informed decisions by interpreting data trends and generating reports.`,
-    image: "/Softwareer.jpg",
-  },
-  {
-    id: "oil-petroleum",
-    title: "Oil and Petroleum Job",
-    salary: "$55,000 - $85,000",
-    content: `Data analysts collect, process, and perform statistical analyses on data. They help organizations make informed decisions by interpreting data trends and generating reports.`,
-    image: "/oil.jpg",
-  },
-  {
-    id: "bank-job",
-    title: "Banking Job",
-    salary: "$55,000 - $85,000",
-    content: `Data analysts collect, process, and perform statistical analyses on data. They help organizations make informed decisions by interpreting data trends and generating reports.`,
-    image: "/bank.jpg",
-  },
-  {
-    id: "software-er",
-    title: "Software Engineer job",
-    salary: "$55,000 - $85,000",
-    content: `Data analysts collect, process, and perform statistical analyses on data. They help organizations make informed decisions by interpreting data trends and generating reports.`,
-    image: "/Softwareer.jpg",
-  },
-];
+import { mockJobs } from "../assets/jobsData";
 
 const JobListWithDetails = () => {
   const jobRefs = useRef({});
   const navigate = useNavigate();
 
+  // ✅ Transform jobsData to only include relevant fields
+  const jobs = mockJobs.map((job) => ({
+    id: job.id,
+    title: job.title,
+    salary: job.salary,
+    content: job.description,
+    image: job.image,
+  }));
+
   const handleClick = (id) => {
     const element = jobRefs.current[id];
     if (element) {
-      const yOffset = -80; // navbar height (negative to scroll up more)
+      const yOffset = -80;
       const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
@@ -61,7 +26,7 @@ const JobListWithDetails = () => {
 
   return (
     <div className="w-full p-6 space-y-12 text-left bg-gray-50">
-      {/* Job List as table */}
+      {/* Job List Table */}
       <div className="max-w-3xl mx-auto">
         <h2 className="text-3xl font-bold mb-6 text-center">
           Job List with Salary
@@ -100,17 +65,17 @@ const JobListWithDetails = () => {
         </table>
       </div>
 
-      {/* Detailed job sections */}
+      {/* Job Details Sections */}
       <div>
         {jobs.map(({ id, title, content, image }) => (
           <section
             key={id}
             ref={(el) => (jobRefs.current[id] = el)}
             id={id}
-            className="mb-10 flex flex-col md:flex-row items-start gap-8 bg-white p-6 rounded-lg shadow"
+            className="mb-10 flex flex-col md:flex-row items-center gap-8 bg-white p-6 rounded-lg shadow"
           >
-            {/* Left content */}
-            <div className="md:w-1/2 text-left">
+            {/* Text Content */}
+            <div className="md:w-1/2 text-left self-center">
               <h3 className="text-3xl font-bold mb-4">{title}</h3>
               <p className="text-gray-700 whitespace-pre-line">
                 {content.repeat(4)}
@@ -128,7 +93,7 @@ const JobListWithDetails = () => {
               </div>
             </div>
 
-            {/* Right image */}
+            {/* Image */}
             <div className="md:w-1/2 flex justify-start">
               <img
                 src={image}

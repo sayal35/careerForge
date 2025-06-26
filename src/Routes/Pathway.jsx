@@ -7,9 +7,12 @@ import JobDetailPage from "../Pages/JobDetailPage.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 
+import ScrollToTop from "../components/ScrollToTop.jsx";
+
 function Pathway() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Dashboard />} />
