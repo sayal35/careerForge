@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@keyframes floating {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(30px, 25px);
+    }
+  }
+  
+  .animate-floating {
+    animation-name: floating;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }
+  

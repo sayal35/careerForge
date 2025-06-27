@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { mockJobs } from "../assets/jobsData";
+import Features from "../components/Features";
 
 const JobListWithDetails = () => {
   const jobRefs = useRef({});
@@ -14,6 +15,16 @@ const JobListWithDetails = () => {
     content: job.description,
     image: job.image,
   }));
+
+  const sectionColors = [
+    "bg-blue-50",
+    "bg-green-50",
+    "bg-yellow-50",
+    "bg-pink-50",
+    "bg-purple-50",
+    "bg-indigo-50",
+    "bg-teal-50",
+  ];
 
   const handleClick = (id) => {
     const element = jobRefs.current[id];
@@ -64,15 +75,21 @@ const JobListWithDetails = () => {
           </tbody>
         </table>
       </div>
-
+      <Features />
       {/* Job Details Sections */}
       <div>
-        {jobs.map(({ id, title, content, image }) => (
+        <h2 className="text-4xl font-bold text-center text-blue-700 mb-12">
+          Your Next Opportunity Starts Here
+        </h2>
+
+        {jobs.map(({ id, title, content, image }, index) => (
           <section
             key={id}
             ref={(el) => (jobRefs.current[id] = el)}
             id={id}
-            className="mb-10 flex flex-col md:flex-row items-center gap-8 bg-white p-6 rounded-lg shadow"
+            className={`mb-10 flex flex-col md:flex-row items-center gap-8 p-6 rounded-lg shadow ${
+              sectionColors[index % sectionColors.length]
+            }`}
           >
             {/* Text Content */}
             <div className="md:w-1/2 text-left self-center">
