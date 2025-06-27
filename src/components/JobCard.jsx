@@ -38,40 +38,32 @@ const JobCard = ({ job, index, savedJobs, onToggleSave }) => {
 
   return (
     <div
-      className={`job-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 animate-[slideUp_0.6s_ease-out] hover:shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)] ${
-        job.featured ? "ring-2 ring-blue-500 ring-opacity-50" : ""
-      }`}
+      className="job-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 animate-[slideUp_0.6s_ease-out] hover:shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)] h-full flex flex-col"
       style={{ animationDelay: `${index * 100}ms` }}
     >
-      {job.featured && (
-        <div className="job-card__featured bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs font-semibold px-3 py-1 rounded-t-xl">
-          ⭐ Featured Job
-        </div>
-      )}
-
-      <div className="job-card__content p-6">
+      <div className="job-card__content p-6 flex flex-col h-full">
         {/* Header */}
         <div className="job-card__header flex justify-between items-start mb-4">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3 flex-1 min-w-0">
             <img
-              src={job.logo || "/placeholder.svg"}
+              src={job.logo || "/placeholder.svg?height=48&width=48"}
               alt={`${job.company} logo`}
-              className="w-12 h-12 rounded-lg object-cover"
+              className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
             />
-            <div>
-              <h3 className="job-card__title text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
+            <div className="min-w-0 flex-1">
+              <h3 className="job-card__title text-lg font-bold text-gray-900 hover:text-blue-600 transition-colors line-clamp-2">
                 {job.title}
               </h3>
               <div className="flex items-center space-x-1 text-gray-600">
-                <Building2 className="h-4 w-4" />
-                <span className="text-sm">{job.company}</span>
+                <Building2 className="h-4 w-4 flex-shrink-0" />
+                <span className="text-sm truncate">{job.company}</span>
               </div>
             </div>
           </div>
 
           <button
             onClick={() => onToggleSave(job.id)}
-            className="job-card__save p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="job-card__save p-2 hover:bg-gray-100 rounded-full transition-colors flex-shrink-0"
           >
             {savedJobs.has(job.id) ? (
               <BookmarkCheck className="h-5 w-5 text-blue-600" />
@@ -84,26 +76,28 @@ const JobCard = ({ job, index, savedJobs, onToggleSave }) => {
         {/* Job Info */}
         <div className="job-card__info space-y-2 mb-4">
           <div className="flex items-center space-x-2 text-sm text-gray-600">
-            <MapPin className="h-4 w-4" />
-            <span>{job.location}</span>
+            <MapPin className="h-4 w-4 flex-shrink-0" />
+            <span className="truncate">{job.location}</span>
             <span className="text-gray-400">•</span>
-            <Briefcase className="h-4 w-4" />
-            <span>{job.type}</span>
+            <Briefcase className="h-4 w-4 flex-shrink-0" />
+            <span className="truncate">{job.type}</span>
           </div>
 
           <div className="flex items-center space-x-2 text-sm text-gray-600">
-            <DollarSign className="h-4 w-4" />
-            <span>{job.salary}</span>
+            <DollarSign className="h-4 w-4 flex-shrink-0" />
+            <span className="truncate">{job.salary}</span>
           </div>
 
           <div className="flex items-center space-x-2 text-sm text-gray-600">
-            <Clock className="h-4 w-4" />
-            <span>Posted {formatDate(job.postedDate)}</span>
+            <Clock className="h-4 w-4 flex-shrink-0" />
+            <span className="truncate">
+              Posted {formatDate(job.postedDate)}
+            </span>
           </div>
         </div>
 
         {/* Description */}
-        <p className="job-card__description text-gray-700 text-sm mb-4 line-clamp-3">
+        <p className="job-card__description text-gray-700 text-sm mb-4 line-clamp-3 flex-grow">
           {job.description}
         </p>
 
@@ -113,7 +107,7 @@ const JobCard = ({ job, index, savedJobs, onToggleSave }) => {
             {job.requirements.slice(0, 2).map((req, idx) => (
               <span
                 key={idx}
-                className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full"
+                className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full truncate"
               >
                 {req}
               </span>
@@ -127,19 +121,21 @@ const JobCard = ({ job, index, savedJobs, onToggleSave }) => {
         </div>
 
         {/* Footer */}
-        <div className="job-card__footer flex justify-between items-center pt-4 border-t border-gray-100">
-          <div className="flex items-center space-x-4 text-xs text-gray-500">
+        <div className="job-card__footer flex justify-between items-center pt-4 border-t border-gray-100 mt-auto">
+          <div className="flex items-center space-x-3 text-xs text-gray-500 overflow-hidden">
             <div className="flex items-center space-x-1">
-              <Users className="h-3 w-3" />
-              <span>{job.applicants} applicants</span>
+              <Users className="h-3 w-3 flex-shrink-0" />
+              <span className="truncate">{job.applicants} applicants</span>
             </div>
             <div className="flex items-center space-x-1">
-              <Star className="h-3 w-3 text-yellow-500" />
+              <Star className="h-3 w-3 text-yellow-500 flex-shrink-0" />
               <span>{job.rating}</span>
             </div>
             <div className="flex items-center space-x-1">
-              <Calendar className="h-3 w-3" />
-              <span>{getDaysRemaining(job.deadline)} days left</span>
+              <Calendar className="h-3 w-3 flex-shrink-0" />
+              <span className="truncate">
+                {getDaysRemaining(job.deadline)} days left
+              </span>
             </div>
           </div>
         </div>

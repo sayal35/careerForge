@@ -4,6 +4,7 @@ import { mockJobs } from "../assets/jobsData";
 import JobCard from "../components/JobCard";
 import SearchFilter from "../components/SearchFilter";
 import Pagination from "../components/Pagination";
+
 const AvailableJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
@@ -94,9 +95,9 @@ const AvailableJobs = () => {
         <div className="max-w-7xl mx-auto">
           <div className="animate-pulse">
             <div className="h-12 bg-gray-200 rounded-lg mb-8 max-w-md mx-auto"></div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="bg-white p-6 rounded-xl shadow-lg">
+                <div key={i} className="bg-white p-6 rounded-xl shadow-lg h-80">
                   <div className="h-6 bg-gray-200 rounded mb-4"></div>
                   <div className="h-4 bg-gray-200 rounded mb-2"></div>
                   <div className="h-4 bg-gray-200 rounded mb-4 w-3/4"></div>
@@ -152,8 +153,8 @@ const AvailableJobs = () => {
           </p>
         </div>
 
-        {/* Job Listings */}
-        <div className="job-listings grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
+        {/* Job Listings - Updated grid for equal height cards */}
+        <div className="job-listings grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-8">
           {currentJobs.map((job, index) => (
             <JobCard
               key={job.id}

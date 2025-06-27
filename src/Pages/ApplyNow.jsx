@@ -1,33 +1,6 @@
 import { useState } from "react";
-import {
-  User,
-  Mail,
-  Phone,
-  Briefcase,
-  Upload,
-  MessageSquare,
-  CheckCircle,
-  AlertCircle,
-  Loader2,
-  X,
-} from "lucide-react";
-import { useFormValidation } from "../hooks/useFormValidation";
-import { validationRules } from "../utils/validationRules";
-import { jobRoles } from "../assets/jobsData";
-import FormField from "../components/Forms/FormField";
-import FileUpload from "../components/Forms/FileUpload";
-
-const LoadingSpinner = ({ size = "default", className = "" }) => {
-  const sizeClasses = {
-    small: "h-4 w-4",
-    default: "h-6 w-6",
-    large: "h-8 w-8",
-  };
-
-  return (
-    <Loader2 className={`animate-spin ${sizeClasses[size]} ${className}`} />
-  );
-};
+import { CheckCircle, AlertCircle, X } from "lucide-react";
+import FormfacadeEmbed from "@formfacade/embed-react";
 
 const StatusMessage = ({ type, title, message, onClose }) => {
   const styles = {
@@ -74,62 +47,16 @@ const StatusMessage = ({ type, title, message, onClose }) => {
 };
 
 const ApplyNow = () => {
-  const initialFormData = {
-    fullName: "",
-    email: "",
-    phone: "",
-    role: "",
-    resume: null,
-    coverLetter: "",
-    experience: "",
-    expectedSalary: "",
-    availableDate: "",
-    linkedinUrl: "",
-    portfolioUrl: "",
-  };
-
-  const {
-    formData,
-    setFormData,
-    errors,
-    setErrors,
-    handleInputChange,
-    validateForm,
-    resetForm,
-  } = useFormValidation(initialFormData, validationRules);
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
 
-  const handleFileChange = (file, error) => {
-    setFormData((prev) => ({ ...prev, resume: file }));
-    if (error) {
-      setErrors((prev) => ({ ...prev, resume: error }));
-    } else {
-      setErrors((prev) => ({ ...prev, resume: "" }));
-    }
-  };
+  const handleFormSubmit = () => {
+    console.log("Form submitted");
+    setSubmitStatus("success");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!validateForm()) {
-      return;
-    }
-
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      setSubmitStatus("success");
-      resetForm();
-    } catch (error) {
-      setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Auto-hide success message after 5 seconds
+    setTimeout(() => {
+      setSubmitStatus(null);
+    }, 5000);
   };
 
   return (
@@ -165,223 +92,86 @@ const ApplyNow = () => {
           />
         )}
 
-        {/* Application Form */}
-        <div className="apply-now__form-container bg-white rounded-2xl shadow-xl p-8 md:p-12 animate-[slideUp_0.6s_ease-out]">
-          <form onSubmit={handleSubmit} className="apply-now__form space-y-8">
-            {/* Personal Information Section */}
-            <div className="form-section">
-              <h2 className="form-section__title text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <User className="h-6 w-6 mr-3 text-blue-600" />
-                Personal Information
-              </h2>
+        {/* Formfacade Form Container */}
+        <div className="apply-now__form-container bg-white rounded-2xl shadow-xl p-4 md:p-8 animate-[slideUp_0.6s_ease-out]">
+          <div className="w-full">
+            <FormfacadeEmbed
+              formFacadeURL="https://formfacade.com/include/116185306238061097688/form/1FAIpQLSekBlJuPcNjHVOD_bH-7UVuWcfrlMdKwAg-J5G44dvZ9nR-rg/classic.js/?div=ff-compose"
+              onSubmitForm={() => console.log("Form submitted")}
+            />
+          </div>
+        </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <FormField
-                  label="Full Name"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleInputChange}
-                  error={errors.fullName}
-                  placeholder="Enter your full name"
-                  required
-                />
-
-                <FormField
-                  label="Email Address"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  error={errors.email}
-                  placeholder="your.email@example.com"
-                  icon={Mail}
-                  required
-                />
-
-                <FormField
-                  label="Phone Number"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  error={errors.phone}
-                  placeholder="+1 (555) 123-4567"
-                  icon={Phone}
-                  required
-                />
-
-                <FormField
-                  label="Years of Experience"
-                  name="experience"
-                  type="number"
-                  value={formData.experience}
-                  onChange={handleInputChange}
-                  error={errors.experience}
-                  placeholder="e.g., 3"
-                  min="0"
-                  max="50"
-                  required
-                />
-              </div>
-            </div>
-
-            {/* Job Information Section */}
-            <div className="form-section">
-              <h2 className="form-section__title text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <Briefcase className="h-6 w-6 mr-3 text-blue-600" />
-                Job Information
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <FormField
-                  label="Desired Role"
-                  name="role"
-                  value={formData.role}
-                  onChange={handleInputChange}
-                  error={errors.role}
-                  required
-                >
-                  <select
-                    name="role"
-                    value={formData.role}
-                    onChange={handleInputChange}
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 focus:-translate-y-0.5 focus:shadow-[0_4px_12px_rgba(59,130,246,0.15)] ${
-                      errors.role
-                        ? "border-red-500 bg-red-50"
-                        : "border-gray-300 hover:border-gray-400"
-                    }`}
-                  >
-                    <option value="">Select a role</option>
-                    {jobRoles.map((role) => (
-                      <option key={role} value={role}>
-                        {role}
-                      </option>
-                    ))}
-                  </select>
-                </FormField>
-
-                <FormField
-                  label="Expected Salary (USD)"
-                  name="expectedSalary"
-                  value={formData.expectedSalary}
-                  onChange={handleInputChange}
-                  error={errors.expectedSalary}
-                  placeholder="e.g., 75000"
-                  required
-                />
-
-                <FormField
-                  label="Available Start Date"
-                  name="availableDate"
-                  type="date"
-                  value={formData.availableDate}
-                  onChange={handleInputChange}
-                  error={errors.availableDate}
-                  min={new Date().toISOString().split("T")[0]}
-                  className="md:col-span-2"
-                  required
-                />
-              </div>
-            </div>
-
-            {/* Documents Section */}
-            <div className="form-section">
-              <h2 className="form-section__title text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <Upload className="h-6 w-6 mr-3 text-blue-600" />
-                Documents
-              </h2>
-
-              <FileUpload
-                label="Resume/CV"
-                name="resume"
-                file={formData.resume}
-                onFileChange={handleFileChange}
-                error={errors.resume}
-                required
-              />
-            </div>
-
-            {/* Additional Information Section */}
-            <div className="form-section">
-              <h2 className="form-section__title text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <MessageSquare className="h-6 w-6 mr-3 text-blue-600" />
-                Additional Information
-              </h2>
-
-              <div className="space-y-6">
-                <FormField
-                  label="LinkedIn Profile (Optional)"
-                  name="linkedinUrl"
-                  type="url"
-                  value={formData.linkedinUrl}
-                  onChange={handleInputChange}
-                  error={errors.linkedinUrl}
-                  placeholder="https://linkedin.com/in/yourprofile"
-                />
-
-                <FormField
-                  label="Portfolio Website (Optional)"
-                  name="portfolioUrl"
-                  type="url"
-                  value={formData.portfolioUrl}
-                  onChange={handleInputChange}
-                  error={errors.portfolioUrl}
-                  placeholder="https://yourportfolio.com"
-                />
-
-                <FormField
-                  label="Cover Letter"
-                  name="coverLetter"
-                  value={formData.coverLetter}
-                  onChange={handleInputChange}
-                  error={errors.coverLetter}
-                  placeholder="Tell us why you're interested in this position and what makes you a great fit..."
-                  required
-                >
-                  <textarea
-                    name="coverLetter"
-                    value={formData.coverLetter}
-                    onChange={handleInputChange}
-                    rows="6"
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none focus:-translate-y-0.5 focus:shadow-[0_4px_12px_rgba(59,130,246,0.15)] ${
-                      errors.coverLetter
-                        ? "border-red-500 bg-red-50"
-                        : "border-gray-300 hover:border-gray-400"
-                    }`}
-                    placeholder="Tell us why you're interested in this position and what makes you a great fit..."
-                  />
-                </FormField>
-
-                <div className="flex justify-between items-center">
-                  <span></span>
-                  <p className="text-sm text-gray-500">
-                    {formData.coverLetter.length} characters (minimum 50)
-                  </p>
+        {/* Additional Information Section */}
+        <div className="mt-8 text-center">
+          <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              What to Expect Next
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-blue-600 font-bold text-lg">1</span>
                 </div>
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  Application Review
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Our team will review your application within 2-3 business
+                  days.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-blue-600 font-bold text-lg">2</span>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  Initial Screening
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Qualified candidates will be contacted for a phone or video
+                  screening.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-blue-600 font-bold text-lg">3</span>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">
+                  Final Interview
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Successful candidates will be invited for a final interview
+                  with the team.
+                </p>
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Submit Button */}
-            <div className="form-submit pt-6">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="form-submit__button w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:from-gray-400 disabled:to-gray-500 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-200 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed flex items-center justify-center space-x-3 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-2px_rgba(0,0,0,0.05)]"
+        {/* Contact Information */}
+        <div className="mt-8">
+          <div className="bg-white rounded-xl shadow-lg p-6 md:p-8 text-center">
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Need Help?</h3>
+            <p className="text-gray-600 mb-4">
+              If you have any questions about the application process or need
+              assistance, don't hesitate to reach out to our HR team.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a
+                href="mailto:hr@company.com"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
               >
-                {isSubmitting ? (
-                  <>
-                    <LoadingSpinner />
-                    <span>Submitting Application...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Submit Application</span>
-                    <Upload className="h-5 w-5" />
-                  </>
-                )}
-              </button>
+                Contact HR Team
+              </a>
+              <a
+                href="tel:+1234567890"
+                className="border border-blue-600 text-blue-600 hover:bg-blue-50 font-semibold py-2 px-6 rounded-lg transition-colors"
+              >
+                Call Us: (123) 456-7890
+              </a>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </section>
