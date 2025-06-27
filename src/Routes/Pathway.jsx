@@ -5,14 +5,14 @@ import { AdminAuthProvider } from "../contexts/AdminAuthContext"
 import ProtectedAdminRoute from "../components/ProtectedAdminRoute"
 import Dashboard from "../Dashboard/Dashboard.jsx"
 import Contact from "../Dashboard/Contact.jsx"
-import ApplyNow from "../Pages/ApplyNow.jsx" // Check if this should be Pages/
-import AvailableJobs from "../Pages/AvailableJobs.jsx" // Check if this should be Pages/
+import ApplyNow from "../pages/ApplyNow.jsx"
+import AvailableJobs from "../pages/AvailableJobs.jsx"
 import Navbar from "../components/Navbar.jsx"
 import Footer from "../components/Footer.jsx"
-import ExploreYourFuture from "../Pages/ExploreYourFuture.jsx" // Check if this should be Pages/
-import Blog from "../Pages/Blog.jsx" // Check if this should be Pages/
-import AdminLogin from "../Pages/AdminLogin.jsx" // ← CHECK THIS PATH
-import AdminDashboard from "../Pages/AdminDashboard.jsx" // ← CHECK THIS PATH
+import ExploreYourFuture from "../pages/ExploreYourFuture.jsx"
+import Blog from "../pages/Blog.jsx"
+import AdminLogin from "../pages/AdminLogin.jsx"
+import AdminDashboard from "../pages/AdminDashboard.jsx"
 import ScrollToTop from "../components/ScrollToTop.jsx"
 
 function Pathway() {
@@ -20,9 +20,8 @@ function Pathway() {
     <AdminAuthProvider>
       <BrowserRouter>
         <ScrollToTop />
-
         <Routes>
-          {/* Hidden Admin Routes - Only accessible via direct URL */}
+          {/* Admin Routes MUST come FIRST - before the wildcard */}
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route
             path="/admin/dashboard"
@@ -35,18 +34,66 @@ function Pathway() {
 
           {/* Public Routes with Layout */}
           <Route
-            path="/*"
+            path="/"
             element={
               <>
                 <Navbar />
-                <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/apply" element={<ApplyNow />} />
-                  <Route path="/jobs" element={<AvailableJobs />} />
-                  <Route path="/explore" element={<ExploreYourFuture />} />
-                  <Route path="/blog" element={<Blog />} />
-                </Routes>
+                <Dashboard />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/contact"
+            element={
+              <>
+                <Navbar />
+                <Contact />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/apply"
+            element={
+              <>
+                <Navbar />
+                <ApplyNow />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/jobs"
+            element={
+              <>
+                <Navbar />
+                <AvailableJobs />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/explore"
+            element={
+              <>
+                <Navbar />
+                <ExploreYourFuture />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/blog"
+            element={
+              <>
+                <Navbar />
+                <Blog />
                 <Footer />
               </>
             }
