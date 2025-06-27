@@ -4,6 +4,7 @@ import { mockJobs } from "../assets/jobsData";
 import JobCard from "../components/JobCard";
 import SearchFilter from "../components/SearchFilter";
 import Pagination from "../components/Pagination";
+
 const AvailableJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
@@ -90,17 +91,20 @@ const AvailableJobs = () => {
 
   if (isLoading) {
     return (
-      <section className="available-jobs min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-12 px-4">
+      <section className="available-jobs min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8 sm:py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="animate-pulse">
-            <div className="h-12 bg-gray-200 rounded-lg mb-8 max-w-md mx-auto"></div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="h-8 sm:h-12 bg-gray-200 rounded-lg mb-6 sm:mb-8 max-w-md mx-auto"></div>
+            <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="bg-white p-6 rounded-xl shadow-lg">
-                  <div className="h-6 bg-gray-200 rounded mb-4"></div>
-                  <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                  <div className="h-4 bg-gray-200 rounded mb-4 w-3/4"></div>
-                  <div className="h-20 bg-gray-200 rounded"></div>
+                <div
+                  key={i}
+                  className="bg-white p-4 sm:p-6 rounded-xl shadow-lg h-64 sm:h-80"
+                >
+                  <div className="h-4 sm:h-6 bg-gray-200 rounded mb-3 sm:mb-4"></div>
+                  <div className="h-3 sm:h-4 bg-gray-200 rounded mb-2"></div>
+                  <div className="h-3 sm:h-4 bg-gray-200 rounded mb-3 sm:mb-4 w-3/4"></div>
+                  <div className="h-16 sm:h-20 bg-gray-200 rounded"></div>
                 </div>
               ))}
             </div>
@@ -111,14 +115,14 @@ const AvailableJobs = () => {
   }
 
   return (
-    <section className="available-jobs min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-12 px-4">
+    <section className="available-jobs min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8 sm:py-12 px-4">
       <div className="available-jobs__container max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12 animate-[fadeIn_0.6s_ease-out]">
-          <h1 className="available-jobs__title text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-8 sm:mb-12 animate-[fadeIn_0.6s_ease-out]">
+          <h1 className="available-jobs__title text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">
             Find Your Perfect Job
           </h1>
-          <p className="available-jobs__description text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="available-jobs__description text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
             Discover amazing opportunities from top companies. Your dream job is
             just a click away.
           </p>
@@ -141,8 +145,8 @@ const AvailableJobs = () => {
         />
 
         {/* Results Summary */}
-        <div className="results-summary mb-6">
-          <p className="text-gray-600">
+        <div className="results-summary mb-4 sm:mb-6 px-4">
+          <p className="text-gray-600 text-sm sm:text-base">
             Showing{" "}
             <span className="font-semibold">
               {indexOfFirstJob + 1}-
@@ -153,7 +157,7 @@ const AvailableJobs = () => {
         </div>
 
         {/* Job Listings */}
-        <div className="job-listings grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
+        <div className="job-listings grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-6 sm:mb-8">
           {currentJobs.map((job, index) => (
             <JobCard
               key={job.id}
@@ -167,19 +171,19 @@ const AvailableJobs = () => {
 
         {/* No Results */}
         {filteredJobs.length === 0 && (
-          <div className="no-results text-center py-12">
+          <div className="no-results text-center py-8 sm:py-12 px-4">
             <div className="max-w-md mx-auto">
-              <Briefcase className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              <Briefcase className="h-12 sm:h-16 w-12 sm:w-16 text-gray-400 mx-auto mb-3 sm:mb-4" />
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
                 No jobs found
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 mb-4 text-sm sm:text-base">
                 Try adjusting your search criteria or clearing the filters to
                 see more results.
               </p>
               <button
                 onClick={clearFilters}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm sm:text-base"
               >
                 Clear All Filters
               </button>
