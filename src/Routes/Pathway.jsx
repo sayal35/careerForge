@@ -1,5 +1,3 @@
-"use client"
-
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { AdminAuthProvider } from "../contexts/AdminAuthContext"
 import ProtectedAdminRoute from "../components/ProtectedAdminRoute"
@@ -21,7 +19,7 @@ function Pathway() {
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
-          {/* Admin Routes MUST come FIRST - before the wildcard */}
+          {/* Admin Routes - These MUST come first and be exact */}
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route
             path="/admin/dashboard"
@@ -94,6 +92,29 @@ function Pathway() {
               <>
                 <Navbar />
                 <Blog />
+                <Footer />
+              </>
+            }
+          />
+
+          {/* Catch-all route for 404 - This should be LAST */}
+          <Route
+            path="*"
+            element={
+              <>
+                <Navbar />
+                <div className="min-h-screen flex items-center justify-center bg-gray-50">
+                  <div className="text-center">
+                    <h1 className="text-4xl font-bold text-gray-900 mb-4">404</h1>
+                    <p className="text-gray-600 mb-8">Page not found</p>
+                    <a
+                      href="/"
+                      className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                    >
+                      Go Home
+                    </a>
+                  </div>
+                </div>
                 <Footer />
               </>
             }

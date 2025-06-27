@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import { useAdminAuth } from "../contexts/AdminAuthContext"
@@ -11,7 +13,7 @@ const ProtectedAdminRoute = ({ children, requiredPermission = null }) => {
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
       // Redirect to login with return URL
-      navigate(`/admin/login?returnUrl=${encodeURIComponent(location.pathname)}`)
+      navigate(`/admin/login?returnUrl=${encodeURIComponent(location.pathname)}`, { replace: true })
     }
   }, [isAuthenticated, isLoading, navigate, location])
 
@@ -38,7 +40,7 @@ const ProtectedAdminRoute = ({ children, requiredPermission = null }) => {
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Access Denied</h1>
           <p className="text-gray-600 mb-6">You need to be logged in as an administrator to access this page.</p>
           <button
-            onClick={() => navigate("/admin/login")}
+            onClick={() => navigate("/admin/login", { replace: true })}
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
           >
             Go to Login
@@ -59,7 +61,7 @@ const ProtectedAdminRoute = ({ children, requiredPermission = null }) => {
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Insufficient Permissions</h1>
           <p className="text-gray-600 mb-6">You don't have the required permissions to access this resource.</p>
           <button
-            onClick={() => navigate("/admin/dashboard")}
+            onClick={() => navigate("/admin/dashboard", { replace: true })}
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
           >
             Back to Dashboard

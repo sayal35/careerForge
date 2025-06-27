@@ -25,7 +25,7 @@ const AdminLogin = () => {
   useEffect(() => {
     // If already authenticated, redirect to dashboard
     if (isAuthenticated) {
-      navigate(returnUrl)
+      navigate(returnUrl, { replace: true })
     }
   }, [isAuthenticated, navigate, returnUrl])
 
@@ -56,12 +56,17 @@ const AdminLogin = () => {
     setIsLoading(true)
     setError("")
 
-    const result = await login(formData.username, formData.password)
+    try {
+      const result = await login(formData.username, formData.password)
 
-    if (result.success) {
-      navigate(returnUrl)
-    } else {
-      setError(result.error)
+      if (result.success) {
+        navigate(returnUrl, { replace: true })
+      } else {
+        setError(result.error)
+        setAttempts((prev) => prev + 1)
+      }
+    } catch (err) {
+      setError("Login failed. Please try again.")
       setAttempts((prev) => prev + 1)
     }
 
@@ -73,13 +78,6 @@ const AdminLogin = () => {
       ...formData,
       [e.target.name]: e.target.value,
     })
-  }
-
-  // Prevent access to admin login from regular users (hide the route)
-  const isAdminRoute = window.location.pathname.startsWith("/admin")
-  if (!isAdminRoute) {
-    navigate("/")
-    return null
   }
 
   return (
