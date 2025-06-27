@@ -116,35 +116,43 @@ const AdminLogin = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-blue-200 mb-2">Administrator Username</label>
+              <label htmlFor="admin-username" className="block text-sm font-medium text-blue-200 mb-2">
+                Administrator Username
+              </label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-blue-300" />
                 <input
-                  type="text"
+                  id="admin-username"
                   name="username"
+                  type="text"
                   value={formData.username}
                   onChange={handleChange}
                   required
                   disabled={isBlocked}
                   className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-white placeholder-blue-200 disabled:opacity-50"
                   placeholder="Enter admin username"
+                  autoComplete="username"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-blue-200 mb-2">Secure Password</label>
+              <label htmlFor="admin-password" className="block text-sm font-medium text-blue-200 mb-2">
+                Secure Password
+              </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-blue-300" />
                 <input
-                  type={showPassword ? "text" : "password"}
+                  id="admin-password"
                   name="password"
+                  type={showPassword ? "text" : "password"}
                   value={formData.password}
                   onChange={handleChange}
                   required
                   disabled={isBlocked}
                   className="w-full pl-10 pr-12 py-3 bg-white/10 border border-white/20 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-white placeholder-blue-200 disabled:opacity-50"
                   placeholder="Enter secure password"
+                  autoComplete="current-password"
                 />
                 <button
                   type="button"
