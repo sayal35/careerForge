@@ -6,17 +6,17 @@ const JOB_DATA = {
   roles: [
     {
       id: 1,
-      title: "Customer Service Representative",
+      title: "Business Operations Field",
       company: "TechCorp Solutions",
       location: "Remote / On-site",
       type: "Full-time",
       salary: "$35,000 - $45,000",
       experience: "Entry Level",
-      category: "Customer Service",
+      category: "Business Operations",
       description:
-        "Handle customer inquiries, resolve issues, and provide excellent service via phone, email, and chat.",
+        "Handle business operations, resolve operational issues, and provide excellent service across multiple channels.",
       requirements: [
-        "High school diploma",
+        "Business administration background",
         "Strong communication skills",
         "Computer proficiency",
         "Problem-solving abilities",
@@ -26,36 +26,32 @@ const JOB_DATA = {
     },
     {
       id: 2,
-      title: "Sales Associate",
+      title: "Marketing & Sales Field",
       company: "Retail Plus",
       location: "Multiple Locations",
       type: "Part-time / Full-time",
       salary: "$28,000 - $40,000",
       experience: "Entry Level",
-      category: "Sales",
-      description: "Assist customers, process transactions, maintain store appearance, and achieve sales targets.",
-      requirements: [
-        "Customer service experience preferred",
-        "Flexible schedule",
-        "Team player",
-        "Sales-oriented mindset",
-      ],
+      category: "Marketing & Sales",
+      description:
+        "Develop marketing strategies, manage sales processes, maintain client relationships, and achieve targets.",
+      requirements: ["Marketing experience preferred", "Flexible schedule", "Team player", "Sales-oriented mindset"],
       benefits: ["Employee discount", "Flexible hours", "Commission opportunities", "Health benefits"],
       urgent: true,
     },
     {
       id: 3,
-      title: "Administrative Assistant",
+      title: "Administrative Services Field",
       company: "Business Solutions Inc",
       location: "Office-based",
       type: "Full-time",
       salary: "$32,000 - $42,000",
       experience: "1-2 years",
-      category: "Administrative",
+      category: "Administrative Services",
       description:
-        "Provide administrative support, manage schedules, handle correspondence, and maintain office operations.",
+        "Provide administrative support, manage office operations, handle correspondence, and maintain business processes.",
       requirements: [
-        "Office experience",
+        "Office administration experience",
         "Microsoft Office proficiency",
         "Organizational skills",
         "Professional communication",
@@ -65,57 +61,62 @@ const JOB_DATA = {
     },
     {
       id: 4,
-      title: "Warehouse Associate",
+      title: "Supply Chain & Logistics Field",
       company: "Logistics Pro",
       location: "Warehouse Facility",
       type: "Full-time",
       salary: "$30,000 - $38,000",
       experience: "Entry Level",
-      category: "Warehouse",
-      description: "Pick, pack, and ship orders. Operate warehouse equipment and maintain inventory accuracy.",
-      requirements: ["Physical ability to lift 50lbs", "Attention to detail", "Team collaboration", "Safety-conscious"],
+      category: "Supply Chain & Logistics",
+      description: "Manage supply chain operations, coordinate logistics, and maintain inventory systems.",
+      requirements: [
+        "Physical ability for operations",
+        "Attention to detail",
+        "Team collaboration",
+        "Safety-conscious",
+      ],
       benefits: ["Health coverage", "Overtime opportunities", "Safety training", "Career growth"],
       urgent: true,
     },
     {
       id: 5,
-      title: "Data Entry Clerk",
+      title: "Information Management Field",
       company: "InfoTech Services",
       location: "Remote",
       type: "Part-time / Full-time",
       salary: "$25,000 - $35,000",
       experience: "Entry Level",
-      category: "Data Entry",
-      description: "Input data accurately into systems, verify information, and maintain database integrity.",
-      requirements: ["Typing speed 40+ WPM", "Attention to detail", "Computer skills", "Data accuracy focus"],
+      category: "Information Management",
+      description: "Manage information systems, verify data accuracy, and maintain database integrity.",
+      requirements: ["Data management skills", "Attention to detail", "Computer skills", "Data accuracy focus"],
       benefits: ["Remote work", "Flexible schedule", "Training provided", "Growth opportunities"],
       urgent: false,
     },
     {
       id: 6,
-      title: "Restaurant Server",
+      title: "Hospitality Services Field",
       company: "Fine Dining Group",
-      location: "Restaurant Locations",
+      location: "Service Locations",
       type: "Part-time / Full-time",
       salary: "$25,000 - $35,000 + Tips",
       experience: "Entry Level",
-      category: "Hospitality",
-      description: "Take orders, serve food and beverages, provide excellent customer service in dining environment.",
+      category: "Hospitality Services",
+      description:
+        "Provide hospitality services, manage customer experience, deliver excellent service in hospitality environment.",
       requirements: ["Customer service skills", "Flexible schedule", "Team player", "Professional appearance"],
-      benefits: ["Tips", "Meal discounts", "Flexible hours", "Advancement opportunities"],
+      benefits: ["Tips", "Service discounts", "Flexible hours", "Advancement opportunities"],
       urgent: true,
     },
     {
       id: 7,
-      title: "Delivery Driver",
+      title: "Transportation Services Field",
       company: "Quick Delivery Co",
       location: "Local Routes",
       type: "Part-time / Full-time",
       salary: "$30,000 - $45,000",
       experience: "Entry Level",
-      category: "Transportation",
-      description:
-        "Deliver packages and goods to customers, maintain delivery schedules, and provide customer service.",
+      category: "Transportation Services",
+      description: "Manage transportation services, maintain delivery schedules, and provide customer service.",
       requirements: [
         "Valid driver's license",
         "Clean driving record",
@@ -127,28 +128,29 @@ const JOB_DATA = {
     },
     {
       id: 8,
-      title: "Receptionist",
+      title: "Client Relations Field",
       company: "Professional Services LLC",
       location: "Office Front Desk",
       type: "Full-time",
       salary: "$28,000 - $36,000",
       experience: "Entry Level",
-      category: "Administrative",
-      description: "Greet visitors, answer phones, schedule appointments, and provide general administrative support.",
-      requirements: ["Professional demeanor", "Phone etiquette", "Computer skills", "Multitasking ability"],
+      category: "Client Relations",
+      description: "Manage client relations, handle communications, schedule appointments, and provide client support.",
+      requirements: ["Professional demeanor", "Communication skills", "Computer skills", "Multitasking ability"],
       benefits: ["Health insurance", "Paid time off", "Professional environment", "Skill development"],
       urgent: false,
     },
   ],
   categories: [
     "All",
-    "Customer Service",
-    "Sales",
-    "Administrative",
-    "Warehouse",
-    "Data Entry",
-    "Hospitality",
-    "Transportation",
+    "Business Operations",
+    "Marketing & Sales",
+    "Administrative Services",
+    "Supply Chain & Logistics",
+    "Information Management",
+    "Hospitality Services",
+    "Transportation Services",
+    "Client Relations",
   ],
 }
 
@@ -190,35 +192,39 @@ const JobCard = ({ job, onApply }) => {
 
         <p className="text-gray-700 text-sm mb-4 line-clamp-3">{job.description}</p>
 
-        <div className="mb-4">
-          <h4 className="text-sm font-semibold text-gray-900 mb-2">Key Requirements:</h4>
-          <ul className="text-xs text-gray-600 space-y-1">
-            {job.requirements.slice(0, 2).map((req, index) => (
-              <li key={index} className="flex items-center space-x-1">
-                <Star className="h-3 w-3 text-yellow-500" />
-                <span>{req}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="mb-6">
-          <h4 className="text-sm font-semibold text-gray-900 mb-2">Benefits Include:</h4>
-          <div className="flex flex-wrap gap-1">
-            {job.benefits.slice(0, 2).map((benefit, index) => (
-              <span key={index} className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
-                {benefit}
-              </span>
-            ))}
-            {job.benefits.length > 2 && <span className="text-xs text-gray-500">+{job.benefits.length - 2} more</span>}
+        {[
+          { title: "Key Requirements", items: job.requirements, icon: Star, color: "text-yellow-500" },
+          { title: "Benefits Include", items: job.benefits, color: "text-green-800", bgColor: "bg-green-100" },
+        ].map(({ title, items, icon: Icon, color, bgColor }) => (
+          <div key={title} className="mb-4">
+            <h4 className="text-sm font-semibold text-gray-900 mb-2">{title}:</h4>
+            {Icon ? (
+              <ul className="text-xs text-gray-600 space-y-1">
+                {items.slice(0, 2).map((item, index) => (
+                  <li key={index} className="flex items-center space-x-1">
+                    <Icon className={`h-3 w-3 ${color}`} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div className="flex flex-wrap gap-1">
+                {items.slice(0, 2).map((item, index) => (
+                  <span key={index} className={`text-xs ${bgColor} ${color} px-2 py-1 rounded-full`}>
+                    {item}
+                  </span>
+                ))}
+                {items.length > 2 && <span className="text-xs text-gray-500">+{items.length - 2} more</span>}
+              </div>
+            )}
           </div>
-        </div>
+        ))}
 
         <button
           onClick={() => onApply(job.id)}
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
         >
-          <span>Apply for This Position</span>
+          <span>Apply for This Field</span>
           <ArrowRight className="h-4 w-4" />
         </button>
       </div>
@@ -249,13 +255,13 @@ const CategoryFilter = ({ categories, selectedCategory, onCategoryChange }) => (
 const EmptyState = ({ onShowAll }) => (
   <div className="text-center py-12">
     <Briefcase className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-    <h3 className="text-xl font-semibold text-gray-900 mb-2">No jobs found</h3>
+    <h3 className="text-xl font-semibold text-gray-900 mb-2">No fields found</h3>
     <p className="text-gray-600 mb-4">Try selecting a different category.</p>
     <button
       onClick={onShowAll}
       className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
     >
-      View All Jobs
+      View All Fields
     </button>
   </div>
 )
@@ -282,11 +288,10 @@ const JobApplications = () => {
             <ArrowLeft className="h-5 w-5" />
             <span>Back to Explore</span>
           </button>
-
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Available Job Positions</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Available Career Fields</h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Choose from our current job openings and start your application process today
+              Choose from our current field openings and start your application process today
             </p>
           </div>
         </div>
@@ -302,7 +307,7 @@ const JobApplications = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-8">
             <p className="text-gray-600">
-              Showing <span className="font-semibold">{filteredJobs.length}</span> job
+              Showing <span className="font-semibold">{filteredJobs.length}</span> field
               {filteredJobs.length !== 1 ? "s" : ""}
               {selectedCategory !== "All" && ` in ${selectedCategory}`}
             </p>
@@ -322,9 +327,9 @@ const JobApplications = () => {
 
       <div className="bg-blue-600 py-12">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Don't See the Perfect Job?</h2>
+          <h2 className="text-3xl font-bold text-white mb-4">Don't See the Perfect Field?</h2>
           <p className="text-xl text-blue-100 mb-8">
-            Submit a general application and we'll notify you when matching positions become available
+            Submit a general application and we'll notify you when matching fields become available
           </p>
           <button
             onClick={handleGeneralApplication}
