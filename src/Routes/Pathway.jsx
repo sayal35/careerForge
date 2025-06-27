@@ -5,14 +5,14 @@ import { AdminAuthProvider } from "../contexts/AdminAuthContext"
 import ProtectedAdminRoute from "../components/ProtectedAdminRoute"
 import Dashboard from "../Dashboard/Dashboard.jsx"
 import Contact from "../Dashboard/Contact.jsx"
-import ApplyNow from "../Pages/ApplyNow.jsx"
-import AvailableJobs from "../Pages/AvailableJobs.jsx"
+import ApplyNow from "../Pages/ApplyNow.jsx" // Check if this should be Pages/
+import AvailableJobs from "../Pages/AvailableJobs.jsx" // Check if this should be Pages/
 import Navbar from "../components/Navbar.jsx"
 import Footer from "../components/Footer.jsx"
-import ExploreYourFuture from "../Pages/ExploreYourFuture.jsx"
-import Blog from "../Pages/Blog.jsx"
-import AdminLogin from "../Pages/AdminLogin.jsx"
-import AdminDashboard from "../Pages/AdminDashboard.jsx"
+import ExploreYourFuture from "../Pages/ExploreYourFuture.jsx" // Check if this should be Pages/
+import Blog from "../Pages/Blog.jsx" // Check if this should be Pages/
+import AdminLogin from "../Pages/AdminLogin.jsx" // ← CHECK THIS PATH
+import AdminDashboard from "../Pages/AdminDashboard.jsx" // ← CHECK THIS PATH
 import ScrollToTop from "../components/ScrollToTop.jsx"
 
 function Pathway() {
