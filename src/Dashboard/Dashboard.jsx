@@ -1,3 +1,4 @@
+import FirestoreTest from "../components/TestFirestore";
 import DashboardInfo from "./DashboardInfo";
 
 import JobListWithDetails from "./JobListWithDetails";
@@ -7,6 +8,7 @@ const Dashboard = () => {
     <>
       <DashboardInfo />
       <JobListWithDetails />
+      <FirestoreTest />
     </>
   );
 };
