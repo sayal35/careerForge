@@ -6,6 +6,9 @@ import AvailableJobs from "../Pages/AvailableJobs.jsx";
 import JobDetailPage from "../Pages/JobDetailPage.jsx";
 import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
+import ExploreYourFuture from "../Pages/ExploreYourFuture.jsx"
+import Blog from "../Pages/Blog.jsx"
+import JobApplications from "../Pages/JobApplications.jsx"
 
 import ScrollToTop from "../components/ScrollToTop.jsx";
 
@@ -20,6 +23,9 @@ function Pathway() {
         <Route path="/apply" element={<ApplyNow />} />
         <Route path="/jobs" element={<AvailableJobs />} />
         <Route path="/jobs/:jobId" element={<JobDetailPage />} />
+        <Route path="/explore" element={<ExploreYourFuture />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/job-applications" element={<JobApplications />} />
       </Routes>
       <Footer />
     </BrowserRouter>
