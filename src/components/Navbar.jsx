@@ -1,37 +1,39 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { FaBars, FaTimes } from "react-icons/fa";
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+import { Link, useLocation } from "react-router-dom"
+import { FaBars, FaTimes } from "react-icons/fa"
 
 const Navbar = () => {
-  const [isScrolling, setIsScrolling] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const scrollTimeout = useRef(null);
-  const location = useLocation();
+  const [isScrolling, setIsScrolling] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const scrollTimeout = useRef(null)
+  const location = useLocation()
 
   // Detect scrolling for shadow effect
   const handleScroll = () => {
-    clearTimeout(scrollTimeout.current);
-    setIsScrolling(true);
-    scrollTimeout.current = setTimeout(() => setIsScrolling(false), 150);
-  };
+    clearTimeout(scrollTimeout.current)
+    setIsScrolling(true)
+    scrollTimeout.current = setTimeout(() => setIsScrolling(false), 150)
+  }
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   // Close menu and scroll to top on route change
   useEffect(() => {
-    setMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [location]);
+    setMenuOpen(false)
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [location])
 
   const navLinks = [
     { name: "Blog", to: "/blog" },
     { name: "Explore Your Future", to: "/explore" },
     { name: "Apply Now", to: "/apply" },
     { name: "Available Jobs", to: "/jobs" },
-  ];
+  ]
 
   return (
     <div
@@ -58,10 +60,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <button
-            onClick={() => setMenuOpen((prev) => !prev)}
-            aria-label="Toggle Menu"
-          >
+          <button onClick={() => setMenuOpen((prev) => !prev)} aria-label="Toggle Menu">
             {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
           </button>
         </div>
@@ -83,7 +82,7 @@ const Navbar = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
