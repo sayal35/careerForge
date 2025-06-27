@@ -14,6 +14,7 @@ function Pathway() {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <Navbar />
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/contact" element={<Contact />} />
@@ -23,6 +24,7 @@ function Pathway() {
         <Route path="/explore" element={<ExploreYourFuture />} />
         <Route path="/blog" element={<Blog />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
