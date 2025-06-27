@@ -1,24 +1,6 @@
 import { useState, useEffect } from "react"
-import {
-  Calendar,
-  Clock,
-  ArrowRight,
-  User,
-  Tag,
-  Briefcase,
-  Building2,
-  Code,
-  Stethoscope,
-  GraduationCap,
-  Truck,
-  ShoppingBag,
-  Banknote,
-  Wrench,
-  ChevronDown,
-  ChevronUp,
-} from "lucide-react"
+import { Calendar, Clock, ArrowRight, User, Tag, Briefcase, ChevronDown, ChevronUp } from "lucide-react"
 import { useNavigate } from "react-router-dom"
-import { mockJobs } from "../assets/jobsData"
 
 const BLOG_DATA = {
   posts: [
@@ -33,13 +15,10 @@ const BLOG_DATA = {
         <h2>The Current Job Market Landscape</h2>
         <p>The job market continues to evolve with high-paying opportunities across various industries. Technology leads with software development roles earning $120,000+, while data science and product management also command top salaries.</p>
         <h3>Top High-Paying Positions Available:</h3>
-        <ol>${mockJobs
-          .slice(0, 10)
-          .map((job, i) => `<li><strong>${job.title}</strong> - ${job.salary} at ${job.company}</li>`)
-          .join("")}</ol>
+        <ul><li><strong>Software Developer</strong> - $80,000 - $150,000</li><li><strong>Data Scientist</strong> - $90,000 - $160,000</li><li><strong>Product Manager</strong> - $100,000 - $180,000</li><li><strong>DevOps Engineer</strong> - $85,000 - $155,000</li><li><strong>UI/UX Designer</strong> - $70,000 - $130,000</li></ul>
         <h3>Skills in High Demand</h3>
         <ul><li>React and TypeScript proficiency</li><li>Python/R expertise for data roles</li><li>Cloud platforms (AWS/Azure/GCP)</li><li>Machine learning and AI experience</li><li>Cybersecurity and penetration testing</li><li>Mobile development (React Native/Swift/Kotlin)</li><li>Design systems and user research</li></ul>
-        <p><strong>Ready to start your journey toward a high-paying career? Browse our current ${mockJobs.length} job openings and take the first step today!</strong></p>
+        <p><strong>Ready to start your journey toward a high-paying career? Apply now and take the first step today!</strong></p>
       </div>`,
       author: "Career Expert",
       publishDate: "2024-01-15",
@@ -66,7 +45,7 @@ const BLOG_DATA = {
       featured: true,
       excerpt:
         "Explore exciting opportunities for new graduates and career changers. Learn about entry-level positions, requirements, benefits, and how to apply successfully.",
-      content: `<div class="prose prose-lg max-w-none"><h2>Starting Your Tech Career Journey</h2><p>Entry-level tech opportunities offer numerous paths for growth and skill development. From software development to quality assurance, there are excellent starting points for building professional experience.</p><h3>Popular Entry-Level Tech Career Paths</h3><ul><li><strong>Junior Software Developer</strong> - Build coding skills with mentorship</li><li><strong>QA Engineer</strong> - Learn testing methodologies and automation</li><li><strong>Technical Writer</strong> - Combine writing skills with technical knowledge</li><li><strong>Data Analyst</strong> - Start with data interpretation and visualization</li><li><strong>UI/UX Designer</strong> - Create user-centered design solutions</li></ul><h3>Benefits of Starting Entry-Level Tech Jobs</h3><ul><li><strong>Skill Development:</strong> Learn cutting-edge technologies</li><li><strong>Career Growth:</strong> Fast-paced advancement opportunities</li><li><strong>Competitive Salaries:</strong> Even entry-level positions offer good pay</li><li><strong>Remote Work:</strong> Many positions offer flexible work arrangements</li><li><strong>Innovation:</strong> Work on projects that impact millions of users</li></ul><p><strong>Ready to start your tech career? Browse our entry-level openings and take the first step toward your professional future!</strong></p></div>`,
+      content: `<div class="prose prose-lg max-w-none"><h2>Starting Your Tech Career Journey</h2><p>Entry-level tech opportunities offer numerous paths for growth and skill development. From software development to quality assurance, there are excellent starting points for building professional experience.</p><h3>Popular Entry-Level Tech Career Paths</h3><ul><li><strong>Junior Software Developer</strong> - Build coding skills with mentorship</li><li><strong>QA Engineer</strong> - Learn testing methodologies and automation</li><li><strong>Technical Writer</strong> - Combine writing skills with technical knowledge</li><li><strong>Data Analyst</strong> - Start with data interpretation and visualization</li><li><strong>UI/UX Designer</strong> - Create user-centered design solutions</li></ul><h3>Benefits of Starting Entry-Level Tech Jobs</h3><ul><li><strong>Skill Development:</strong> Learn cutting-edge technologies</li><li><strong>Career Growth:</strong> Fast-paced advancement opportunities</li><li><strong>Competitive Salaries:</strong> Even entry-level positions offer good pay</li><li><strong>Remote Work:</strong> Many positions offer flexible work arrangements</li><li><strong>Innovation:</strong> Work on projects that impact millions of users</li></ul><p><strong>Ready to start your tech career? Apply now and take the first step toward your professional future!</strong></p></div>`,
       author: "Career Counselor",
       publishDate: "2024-01-10",
       readTime: "6 min read",
@@ -83,153 +62,6 @@ const BLOG_DATA = {
     "Industry Insights",
     "Remote Work",
   ],
-  sectors: (() => {
-    const sectorConfig = [
-      {
-        title: "Technology & Software Development",
-        icon: Code,
-        gradient: "from-blue-500 to-indigo-600",
-        keywords: ["developer", "software", "engineer"],
-        benefits: "Competitive salaries, remote work options, and cutting-edge technology projects.",
-      },
-      {
-        title: "Data Science & Analytics",
-        icon: Building2,
-        gradient: "from-green-500 to-emerald-600",
-        keywords: ["data", "analyst"],
-        benefits: "High-impact projects, excellent growth opportunities, and data-driven decision making.",
-      },
-      {
-        title: "Product & Management",
-        icon: Briefcase,
-        gradient: "from-purple-500 to-violet-600",
-        keywords: ["product", "manager"],
-        benefits: "Leadership opportunities, strategic decision-making, and excellent career progression.",
-      },
-      {
-        title: "Design & User Experience",
-        icon: GraduationCap,
-        gradient: "from-pink-500 to-rose-600",
-        keywords: ["ui", "ux", "designer"],
-        benefits: "Creative freedom, user-centered design projects, and collaborative work environments.",
-      },
-      {
-        title: "DevOps & Cloud Infrastructure",
-        icon: Wrench,
-        gradient: "from-orange-500 to-red-600",
-        keywords: ["devops", "cloud"],
-        benefits: "High-demand skills, infrastructure automation, and scalable system design.",
-      },
-      {
-        title: "Cybersecurity",
-        icon: Stethoscope,
-        gradient: "from-red-500 to-pink-600",
-        keywords: ["security", "cyber"],
-        benefits: "Critical security roles, high compensation, and continuous learning opportunities.",
-      },
-      {
-        title: "Mobile Development",
-        icon: Truck,
-        gradient: "from-yellow-500 to-orange-600",
-        keywords: ["mobile", "app"],
-        benefits: "Mobile-first development, cross-platform skills, and user-focused applications.",
-      },
-      {
-        title: "Quality Assurance & Testing",
-        icon: ShoppingBag,
-        gradient: "from-teal-500 to-cyan-600",
-        keywords: ["qa", "test"],
-        benefits: "Quality-focused work, automation skills, and critical thinking development.",
-      },
-      {
-        title: "Technical Writing",
-        icon: Banknote,
-        gradient: "from-indigo-500 to-purple-600",
-        keywords: ["writer", "technical"],
-        benefits: "Communication skills, technical expertise, and documentation leadership.",
-      },
-      {
-        title: "Specialized Fields",
-        icon: Building2,
-        gradient: "from-gray-500 to-gray-700",
-        keywords: ["oil", "bank", "petroleum"],
-        benefits: "Industry expertise, specialized knowledge, and unique career opportunities.",
-      },
-    ]
-
-    return sectorConfig
-      .map((config, index) => ({
-        id: index + 1,
-        ...config,
-        roles: mockJobs.filter((job) => config.keywords.some((keyword) => job.title.toLowerCase().includes(keyword))),
-      }))
-      .filter((sector) => sector.roles.length > 0)
-  })(),
-}
-
-const SectorCard = ({ sector, index, onApply }) => {
-  const Icon = sector.icon
-  return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-      <div className="relative h-64 md:h-80">
-        <img
-          src={`/placeholder.svg?height=320&width=800&text=${encodeURIComponent(sector.title)}`}
-          alt={sector.title}
-          className="w-full h-full object-cover bg-gray-200"
-        />
-        <div
-          className={`absolute inset-0 bg-gradient-to-r ${sector.gradient} bg-opacity-80 flex items-center justify-center`}
-        >
-          <div className="text-center text-white">
-            <div className="bg-white/20 p-4 rounded-full inline-block mb-4">
-              <Icon className="h-12 w-12 text-white" />
-            </div>
-            <h3 className="text-3xl md:text-4xl font-bold mb-2">
-              {index + 1}. {sector.title}
-            </h3>
-            <p className="text-lg opacity-90">{sector.roles.length} positions available</p>
-          </div>
-        </div>
-      </div>
-      <div className="p-8 grid md:grid-cols-2 gap-8">
-        <div>
-          <h4 className="text-xl font-semibold text-gray-900 mb-6 flex items-center space-x-2">
-            <Briefcase className="h-5 w-5 text-blue-600" />
-            <span>Available positions:</span>
-          </h4>
-          <ul className="space-y-3">
-            {sector.roles.map((job, i) => (
-              <li key={i} className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                <div>
-                  <span className="text-gray-700 font-medium">{job.title}</span>
-                  <p className="text-sm text-gray-500">
-                    {job.company} • {job.salary}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="flex flex-col justify-between">
-          <div className="mb-8">
-            <h4 className="text-xl font-semibold text-gray-900 mb-4 flex items-center space-x-2">
-              <Tag className="h-5 w-5 text-green-600" />
-              <span>Benefits & Requirements:</span>
-            </h4>
-            <p className="text-gray-600 leading-relaxed text-lg">{sector.benefits}</p>
-          </div>
-          <button
-            onClick={() => onApply(sector.title)}
-            className={`w-full bg-gradient-to-r ${sector.gradient} text-white font-bold py-4 px-8 rounded-lg hover:shadow-lg transform hover:scale-105 transition-all duration-200 flex items-center justify-center space-x-2 text-lg`}
-          >
-            <span>Apply Now</span>
-            <ArrowRight className="h-5 w-5" />
-          </button>
-        </div>
-      </div>
-    </div>
-  )
 }
 
 const BlogPostCard = ({ post, isExpanded, onToggle, onApply, isFeatured = false }) => (
@@ -331,7 +163,9 @@ const Blog = () => {
     })
   }
 
-  const handleApplyNow = () => navigate("/job-applications")
+  const handleApplyNow = () => {
+    navigate("/apply")
+  }
 
   if (isLoading) {
     return (
@@ -359,16 +193,14 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header Section */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4 py-8 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Career Opportunities Available: Explore {mockJobs.length} Professional Positions
+            Career Opportunities & Professional Insights
           </h1>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Discover unmatched career opportunities across technology, data science, design, and specialized fields.
-            With competitive salaries, modern work environments, and excellent growth potential, we continue to attract
-            top talent from around the world.
+            Discover valuable career insights, industry trends, and professional development tips to advance your
+            career. Get expert advice on job applications, resume writing, and career growth strategies.
           </p>
         </div>
       </div>
@@ -377,7 +209,7 @@ const Blog = () => {
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Start Your Career Journey?</h2>
           <p className="text-xl text-blue-100 mb-8">
-            Browse our current {mockJobs.length} job openings across all industries and start your application today
+            Take the next step in your professional development and apply for exciting career opportunities
           </p>
           <button
             onClick={handleApplyNow}
@@ -387,17 +219,6 @@ const Blog = () => {
             <span>Apply Now</span>
             <ArrowRight className="h-5 w-5" />
           </button>
-        </div>
-      </div>
-
-      <div className="py-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Explore Career Opportunities by Field</h2>
-          <div className="space-y-12">
-            {BLOG_DATA.sectors.map((sector, index) => (
-              <SectorCard key={sector.id} sector={sector} index={index} onApply={handleApplyNow} />
-            ))}
-          </div>
         </div>
       </div>
 
@@ -476,17 +297,16 @@ const Blog = () => {
 
       <div className="bg-gradient-to-r from-green-500 to-emerald-600 py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Conclusion</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Take Action?</h2>
           <p className="text-xl text-green-100 mb-8 leading-relaxed">
-            The thriving technology and business sectors offer abundant opportunities across a wide range of career
-            fields. With competitive salaries, innovative projects, and world-class work environments, these positions
-            remain top destinations for ambitious professionals.
+            Armed with these career insights and tips, you're ready to take the next step in your professional journey.
+            Don't wait – start your application today and unlock new opportunities.
           </p>
           <button
             onClick={handleApplyNow}
             className="bg-white text-green-600 font-bold py-4 px-8 rounded-lg hover:bg-green-50 transition-colors duration-200 text-lg"
           >
-            Take Your Career to the Next Level - Apply Now
+            Start Your Application Now
           </button>
         </div>
       </div>
