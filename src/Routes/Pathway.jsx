@@ -11,34 +11,23 @@ import Blog from "../Pages/Blog.jsx"
 import AdminWrapper from "../components/AdminWrapper.jsx"
 import ScrollToTop from "../components/ScrollToTop.jsx"
 
-const Pathway = () => (
-  <BrowserRouter>
-    <ScrollToTop />
-    <Routes>
-      <Route path="/admin" element={<AdminWrapper />} />
-      {[
-        { path: "/", element: <Dashboard /> },
-        { path: "/contact", element: <Contact /> },
-        { path: "/apply", element: <ApplyNow /> },
-        { path: "/jobs", element: <AvailableJobs /> },
-        { path: "/jobs/:jobId", element: <JobDetailPage /> },
-        { path: "/explore", element: <ExploreYourFuture /> },
-        { path: "/blog", element: <Blog /> },
-      ].map(({ path, element }) => (
-        <Route
-          key={path}
-          path={path}
-          element={
-            <>
-              <Navbar />
-              {element}
-              <Footer />
-            </>
-          }
-        />
-      ))}
-    </Routes>
-  </BrowserRouter>
-)
+function Pathway() {
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/apply" element={<ApplyNow />} />
+        <Route path="/jobs/:jobId" element={<JobDetailPage />} />
+        <Route path="/jobs" element={<AvailableJobs />} />
+        <Route path="/explore" element={<ExploreYourFuture />} />
+        <Route path="/blog" element={<Blog />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+  );
+}
 
 export default Pathway
