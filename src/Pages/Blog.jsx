@@ -11,15 +11,7 @@ const BLOG_DATA = {
       featured: true,
       excerpt:
         "Discover the most lucrative career opportunities in today's booming market. From technology to finance, explore fields that offer excellent salaries and growth potential.",
-      content: `<div class="prose prose-lg max-w-none">
-        <h2>The Current Job Market Landscape</h2>
-        <p>The job market continues to evolve with high-paying opportunities across various industries. Technology leads with software development roles earning $120,000+, while data science and product management also command top salaries.</p>
-        <h3>Top High-Paying Positions Available:</h3>
-        <ul><li><strong>Software Developer</strong> - $80,000 - $150,000</li><li><strong>Data Scientist</strong> - $90,000 - $160,000</li><li><strong>Product Manager</strong> - $100,000 - $180,000</li><li><strong>DevOps Engineer</strong> - $85,000 - $155,000</li><li><strong>UI/UX Designer</strong> - $70,000 - $130,000</li></ul>
-        <h3>Skills in High Demand</h3>
-        <ul><li>React and TypeScript proficiency</li><li>Python/R expertise for data roles</li><li>Cloud platforms (AWS/Azure/GCP)</li><li>Machine learning and AI experience</li><li>Cybersecurity and penetration testing</li><li>Mobile development (React Native/Swift/Kotlin)</li><li>Design systems and user research</li></ul>
-        <p><strong>Ready to start your journey toward a high-paying career? Apply now and take the first step today!</strong></p>
-      </div>`,
+      content: `<div class="prose prose-lg max-w-none"><h2>The Current Job Market Landscape</h2><p>The job market continues to evolve with high-paying opportunities across various industries. Technology leads with software development roles earning $120,000+, while data science and product management also command top salaries.</p><h3>Top High-Paying Positions Available:</h3><ul><li><strong>Software Developer</strong> - $80,000 - $150,000</li><li><strong>Data Scientist</strong> - $90,000 - $160,000</li><li><strong>Product Manager</strong> - $100,000 - $180,000</li><li><strong>DevOps Engineer</strong> - $85,000 - $155,000</li><li><strong>UI/UX Designer</strong> - $70,000 - $130,000</li></ul><h3>Skills in High Demand</h3><ul><li>React and TypeScript proficiency</li><li>Python/R expertise for data roles</li><li>Cloud platforms (AWS/Azure/GCP)</li><li>Machine learning and AI experience</li><li>Cybersecurity and penetration testing</li><li>Mobile development (React Native/Swift/Kotlin)</li><li>Design systems and user research</li></ul><p><strong>Ready to start your journey toward a high-paying career? Apply now and take the first step today!</strong></p></div>`,
       author: "Career Expert",
       publishDate: "2024-01-15",
       readTime: "5 min read",
@@ -163,23 +155,21 @@ const Blog = () => {
     })
   }
 
-  const handleApplyNow = () => {
-    navigate("/apply")
-  }
+  const handleApplyNow = () => navigate("/apply")
 
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 py-12 px-4">
         <div className="max-w-6xl mx-auto animate-pulse">
-          <div className="h-12 bg-gray-200 rounded-lg mb-8 max-w-md mx-auto"></div>
+          <div className="h-12 bg-gray-200 rounded-lg mb-8 max-w-md mx-auto" />
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {Array(6)
               .fill(0)
               .map((_, i) => (
                 <div key={i} className="bg-white p-6 rounded-lg shadow">
-                  <div className="h-6 bg-gray-200 rounded mb-4"></div>
-                  <div className="h-4 bg-gray-200 rounded mb-2"></div>
-                  <div className="h-4 bg-gray-200 rounded mb-4 w-3/4"></div>
+                  <div className="h-6 bg-gray-200 rounded mb-4" />
+                  <div className="h-4 bg-gray-200 rounded mb-2" />
+                  <div className="h-4 bg-gray-200 rounded mb-4 w-3/4" />
                 </div>
               ))}
           </div>
